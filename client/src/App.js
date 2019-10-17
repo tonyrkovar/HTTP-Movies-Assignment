@@ -4,12 +4,15 @@ import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
 
+import { EditMovie } from './Movies/EditMovie'
+
 const App = () => {
   const [savedList, setSavedList] = useState([]);
 
   const addToSavedList = movie => {
     setSavedList([...savedList, movie]);
   };
+
 
   return (
     <>
@@ -18,9 +21,13 @@ const App = () => {
       <Route
         path="/movies/:id"
         render={props => {
+          console.log(props)
           return <Movie {...props} addToSavedList={addToSavedList} />;
         }}
       />
+      <Route path='/edit-movie/:id' render={props => {
+        return <EditMovie {...props} />
+      }} />
     </>
   );
 };
